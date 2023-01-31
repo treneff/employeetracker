@@ -12,7 +12,6 @@ public class Employee {
     private Long id;
 
 
-
     @Column(name = "name")
     private String name;
 
@@ -25,11 +24,16 @@ public class Employee {
     @Column(name = "email")
     private String email;
 
-    public Employee(String name, int age, int employeeNumber, String email) {
+    @ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
+
+    public Employee(String name, int age, int employeeNumber, String email, Department department) {
         this.name = name;
         this.age = age;
         this.employeeNumber = employeeNumber;
         this.email = email;
+        this.department = department;
     }
 
     public Employee(){
@@ -76,5 +80,13 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
